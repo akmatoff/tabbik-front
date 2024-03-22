@@ -1,3 +1,3 @@
 export default function Home() {
-    return (<div className="text-accent">HOME</div>)
+  return <div className="w-full min-h-full"></div>;
 }

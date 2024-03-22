@@ -11,12 +11,14 @@ export default {
         secondary: "var(--secondary-color)",
         accent: "var(--accent-color)",
         text: "var(--text-color)",
-        textLight: "var(--text-color-light)"
+        textLight: "var(--text-color-light)",
+        highlight: "var(--highlight-color)"
       }
     },
     borderRadius: {
       primary: "var(--primary-radius)",
-      secondary: "var(--secondary-radius",
+      secondary: "var(--secondary-radius)",
+      full: "100%"
     }
   },
   plugins: [],

@@ -37,7 +37,7 @@ export default function Login() {
   });
 
   return (
-    <section className="flex flex-col lg:flex-row w-full h-screen py-20 gap-28 justify-center items-center">
+    <section className="flex flex-col lg:flex-row w-full h-screen gap-28 justify-center items-center">
       <div className="flex flex-col">
         <img className="w-96 h-96" src={TabbikLogo} alt="Tabbik logo" />
       </div>
@@ -51,6 +51,8 @@ export default function Login() {
           icon={<FaGoogle />}
           text="Sign in with Google"
           isLoading={isLoading}
+          type="big"
+          size="xl"
           onClick={() => login()}
         />
       </div>

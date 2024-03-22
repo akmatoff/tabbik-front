@@ -6,6 +6,7 @@
   --primary-color: #F0EFF4;
   --accent-color: #118A92;
   --secondary-color: #29393D;
+  --highlight-color: #dddddd;
   --text-color: var(--secondary-color);
   --text-color-light: var(--primary-color);
 
