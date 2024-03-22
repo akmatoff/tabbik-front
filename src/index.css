@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #F0EFF4;
+  --accent-color: #118A92;
+  --secondary-color: #29393D;
+  --text-color: var(--secondary-color);
+  --text-color-light: var(--primary-color);
+
+  --primary-radius: 28px;
+  --secondary-radius: 16px;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: var(--primary-color);
+  color: var(--text-color);
+}
+
+a {
+  text-decoration: none;
+}
