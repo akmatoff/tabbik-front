@@ -6,12 +6,14 @@ import { LuPlus } from "react-icons/lu";
 interface Props {
   title: string;
   children?: ReactNode;
+  actionButtonText?: string;
   onActionButtonClick?: () => void;
 }
 
 export default function PageLayout({
   title,
   onActionButtonClick,
+  actionButtonText = "Create",
   children,
 }: Props) {
   return (
@@ -23,7 +25,7 @@ export default function PageLayout({
             <Button
               icon={<LuPlus />}
               size="md"
-              text="Create"
+              text={actionButtonText}
               onClick={onActionButtonClick}
             />
           )}
