@@ -4,7 +4,7 @@ function showSuccessNotification(text: string = "Success") {
   toast.success(text, {
     style: {
       background: "var(--secondary-color)",
-      color: "var(--text-color)",
+      color: "var(--text-color-light)",
     },
   });
 }
@@ -13,7 +13,7 @@ function showErrorNotification(text: string = "Error") {
   toast.error(text, {
     style: {
       background: "var(--secondary-color)",
-      color: "var(--text-color)",
+      color: "var(--text-color-light)",
     },
   });
 }

@@ -8,11 +8,14 @@ import { StorageKeys } from "@/constants/storageKeys";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/constants/routes";
+import { useNotification } from "@/hooks/useNotification";
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  const { showErrorNotification, showSuccessNotification } = useNotification();
 
   const login = useGoogleLogin({
     onSuccess: ({ access_token }) => {
@@ -21,7 +24,11 @@ export default function Login() {
       convertToken(access_token)
         .then((data) => {
           localStorage.setItem(StorageKeys.TOKEN, data.access_token);
+          showSuccessNotification("Logged in successfully!");
           navigate(ROUTES.HOME);
+        })
+        .catch(() => {
+          showErrorNotification("Login failed");
         })
         .finally(() => {
           setIsLoading(false);
