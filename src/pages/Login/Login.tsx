@@ -5,10 +5,10 @@ import TabbikLogo from "@/assets/tabbik_logo.svg";
 import { convertToken } from "@/requests/convertToken";
 import { useState } from "react";
 import { StorageKeys } from "@/constants/storageKeys";
-import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/constants/routes";
 import { useNotification } from "@/hooks/useNotification";
+import Button from "@/components/Button/Button";
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -47,17 +47,12 @@ export default function Login() {
           <h4 className="font-light text-xl">Hey there,</h4>
           <h1 className="font-bold text-4xl">Welcome Back</h1>
         </div>
-        <button
-          className="flex items-center bg-accent px-12 py-4 rounded-primary text-textLight font-bold text-xl shadow-lg"
+        <Button
+          icon={<FaGoogle />}
+          text="Sign in with Google"
+          isLoading={isLoading}
           onClick={() => login()}
-        >
-          {!isLoading ? (
-            <FaGoogle className="text-4xl" />
-          ) : (
-            <LoadingSpinner size="m" light />
-          )}
-          <h1 className="ml-4">Sign in with Google</h1>
-        </button>
+        />
       </div>
     </section>
   );
