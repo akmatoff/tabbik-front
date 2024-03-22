@@ -22,10 +22,10 @@ export default function Button({
   onClick,
 }: Props) {
   const CLASSES_BY_TYPE = {
-    primary: "bg-accent px-5 py-2",
-    outline: "border border border-accent px-5 py-2",
-    text: "text-text px-5 py-2",
-    big: "bg-accent px-12 py-4",
+    primary: "bg-accent px-5 py-2 max-h-12 shadow-md",
+    outline: "border border border-accent px-5 py-2 max-h-12",
+    text: "text-text px-5 py-2 max-h-12",
+    big: "bg-accent px-12 py-4 max-h-20 shadow-lg",
   };
 
   const TEXT_COLOR_BY_TYPE = {
@@ -38,7 +38,7 @@ export default function Button({
   return (
     <button
       className={cn(
-        "flex items-center rounded-primary shadow-lg gap-2",
+        "flex items-center rounded-primary gap-2",
         CLASSES_BY_TYPE[type]
       )}
       onClick={onClick}

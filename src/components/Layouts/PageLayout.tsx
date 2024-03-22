@@ -22,6 +22,7 @@ export default function PageLayout({
           {onActionButtonClick && (
             <Button
               icon={<LuPlus />}
+              size="md"
               text="Create"
               onClick={onActionButtonClick}
             />
