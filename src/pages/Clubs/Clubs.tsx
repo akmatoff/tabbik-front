@@ -8,7 +8,7 @@ export default function Clubs() {
 
   return (
     <div className="w-full min-h-screen">
-      <PageLayout title="Clubs">
+      <PageLayout title="Clubs" onActionButtonClick={() => {}}>
         {isLoading && (
           <div className="w-full min-h-96 grid place-content-center">
             <LoadingSpinner size="l" />

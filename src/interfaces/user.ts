@@ -8,3 +8,8 @@ export interface IUser {
   last_name: string;
   club: IClub;
 }
+
+export interface IUserData {
+  user: IUser;
+  club: IClub;
+}

@@ -9,6 +9,7 @@
   --highlight-color: #dddddd;
   --text-color: var(--secondary-color);
   --text-color-light: var(--primary-color);
+  --text-secondary-color: #989899;
 
   --primary-radius: 28px;
   --secondary-radius: 16px;

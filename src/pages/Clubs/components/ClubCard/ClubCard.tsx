@@ -17,14 +17,14 @@ export default function ClubCard({ club }: Props) {
           className="w-24 h-24 rounded-full"
         />
         <div>
-          <h1 className="font-bold text-xl text-accent">{club.title}</h1>
-          <p className="font-light">{club.description}</p>
+          <h1 className="font-bold text-xl">{club.title}</h1>
+          <p className="font-light text-textSecondary">{club.description}</p>
         </div>
       </div>
 
       <div className="flex w-full items-center justify-between gap-2">
-        <div className="flex gap-1">
-          <IoMdPerson className="text-xl text-secondary" />
+        <div className="flex gap-1 items-center">
+          <IoMdPerson className="text-md" />
           <h3 className="text-sm font-light">0</h3>
         </div>
         <div>

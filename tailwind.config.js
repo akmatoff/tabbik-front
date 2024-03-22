@@ -12,6 +12,7 @@ export default {
         accent: "var(--accent-color)",
         text: "var(--text-color)",
         textLight: "var(--text-color-light)",
+        textSecondary: "var(--text-secondary-color)",
         highlight: "var(--highlight-color)"
       }
     },
