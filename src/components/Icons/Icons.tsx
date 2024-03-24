@@ -2,7 +2,7 @@ import { IoPeopleSharp } from "react-icons/io5";
 import { FaStar } from "react-icons/fa";
 import { MdEmojiEvents } from "react-icons/md";
 import { IoMdPerson } from "react-icons/io";
-import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowRight, FaCheck } from "react-icons/fa6";
 import { LuPlus } from "react-icons/lu";
 
 export const ICONS = {
@@ -12,4 +12,5 @@ export const ICONS = {
   PROFILE: <IoMdPerson />,
   ARROW_RIGHT: <FaArrowRight />,
   PLUS: <LuPlus />,
+  CHECK: <FaCheck />,
 };

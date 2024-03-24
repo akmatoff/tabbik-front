@@ -70,7 +70,7 @@ export default function ClubCard({ club }: Props) {
           )}
 
           {!userData?.club && club.is_join_requested && (
-            <Button text="Join requested" isDisabled />
+            <Button icon={ICONS.CHECK} text="Join requested" isDisabled />
           )}
         </div>
       </div>
