@@ -17,7 +17,7 @@ export default function Clubs() {
         {!isLoading && (
           <div className="grid md:grid-cols-2 gap-6">
             {clubs?.map((club) => (
-              <ClubCard club={club} />
+              <ClubCard key={club.id} club={club} />
             ))}
           </div>
         )}

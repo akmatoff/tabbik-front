@@ -6,6 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { useNotification } from "@/hooks/useNotification";
 import { ICONS } from "@/components/Icons/Icons";
+import { useCallback } from "react";
 
 interface Props {
   club: IClub;
@@ -29,9 +30,30 @@ export default function ClubCard({ club }: Props) {
     },
   });
 
-  const handleJoinRequest = () => {
+  const handleJoinRequest = useCallback(() => {
     requestToJoin();
-  };
+  }, [requestToJoin]);
+
+  const getButtonToDisplay = useCallback(() => {
+    if (!userData?.club) {
+      if (!club.is_join_requested) {
+        return (
+          <Button
+            icon={ICONS.ARROW_RIGHT}
+            text="Request to join"
+            isLoading={isPending}
+            onClick={handleJoinRequest}
+          />
+        );
+      } else {
+        if (club.is_join_request_approved) {
+          return <Button icon={ICONS.ARROW_RIGHT} text="Join the club" />;
+        }
+
+        return <Button icon={ICONS.CHECK} text="Join requested" isDisabled />;
+      }
+    }
+  }, [club, isPending, userData?.club, handleJoinRequest]);
 
   return (
     <div className="flex flex-col p-6 gap-6 bg-white rounded-primary">
@@ -59,20 +81,7 @@ export default function ClubCard({ club }: Props) {
           </div>
         </div>
 
-        <div>
-          {!userData?.club && !club.is_join_requested && (
-            <Button
-              icon={ICONS.ARROW_RIGHT}
-              text="Request to join"
-              isLoading={isPending}
-              onClick={handleJoinRequest}
-            />
-          )}
-
-          {!userData?.club && club.is_join_requested && (
-            <Button icon={ICONS.CHECK} text="Join requested" isDisabled />
-          )}
-        </div>
+        <div>{getButtonToDisplay()}</div>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ export interface IClub {
   rating: number;
   members_count: number;
   is_approved: boolean;
+  is_join_request_approved: boolean;
   is_join_requested: boolean;
   club_leader: IUser;
   created: string;
