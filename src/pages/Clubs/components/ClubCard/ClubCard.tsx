@@ -1,7 +1,7 @@
 import Button from "@/components/Button/Button";
 import { IClub } from "@/interfaces/club";
 import { useUserdata } from "@/queries/userdata";
-import { useRequestToJoinClub } from "@/queries/clubs";
+import { useJoinClub, useRequestToJoinClub } from "@/queries/clubs";
 import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { useNotification } from "@/hooks/useNotification";
@@ -19,20 +19,36 @@ export default function ClubCard({ club }: Props) {
 
   const { showSuccessNotification, showErrorNotification } = useNotification();
 
-  const { mutate: requestToJoin, isPending } = useRequestToJoinClub({
+  const { mutate: requestToJoin, isPending: isRequestPending } =
+    useRequestToJoinClub({
+      id: club.id,
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CLUBS] });
+        showSuccessNotification("Join requested!");
+      },
+      onError: () => {
+        showErrorNotification("Failed to send request");
+      },
+    });
+
+  const { mutate: joinClub, isPending: isJoinPending } = useJoinClub({
     id: club.id,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CLUBS] });
-      showSuccessNotification("Join requested!");
+      showSuccessNotification("Joined successfully!");
     },
     onError: () => {
-      showErrorNotification("Failed to send request");
+      showErrorNotification("Failed to join the club");
     },
   });
 
   const handleJoinRequest = useCallback(() => {
     requestToJoin();
   }, [requestToJoin]);
+
+  const handleJoinClub = useCallback(() => {
+    joinClub();
+  }, [joinClub]);
 
   const getButtonToDisplay = useCallback(() => {
     if (!userData?.club) {
@@ -41,19 +57,33 @@ export default function ClubCard({ club }: Props) {
           <Button
             icon={ICONS.ARROW_RIGHT}
             text="Request to join"
-            isLoading={isPending}
+            isLoading={isRequestPending}
             onClick={handleJoinRequest}
           />
         );
       } else {
         if (club.is_join_request_approved) {
-          return <Button icon={ICONS.ARROW_RIGHT} text="Join the club" />;
+          return (
+            <Button
+              icon={ICONS.ARROW_RIGHT}
+              text="Join the club"
+              onClick={handleJoinClub}
+              isLoading={isJoinPending}
+            />
+          );
         }
 
         return <Button icon={ICONS.CHECK} text="Join requested" isDisabled />;
       }
     }
-  }, [club, isPending, userData?.club, handleJoinRequest]);
+  }, [
+    club,
+    isRequestPending,
+    isJoinPending,
+    userData?.club,
+    handleJoinRequest,
+    handleJoinClub,
+  ]);
 
   return (
     <div className="flex flex-col p-6 gap-6 bg-white rounded-primary">
