@@ -1,7 +1,4 @@
-import { IoPeopleSharp } from "react-icons/io5";
-import { FaStar } from "react-icons/fa";
-import { MdEmojiEvents } from "react-icons/md";
-import { IoMdPerson } from "react-icons/io";
+import { ICONS } from "../Icons/Icons";
 
 interface NavElement {
   icon: JSX.Element;
@@ -10,8 +7,8 @@ interface NavElement {
 }
 
 export const NAV_ELEMENTS: NavElement[] = [
-  { icon: <MdEmojiEvents />, text: "Tournaments", link: "/tournaments" },
-  { icon: <IoPeopleSharp />, text: "Clubs", link: "/clubs" },
-  { icon: <FaStar />, text: "Rating", link: "/rating" },
-  { icon: <IoMdPerson />, text: "Profile", link: "/profile" },
+  { icon: ICONS.CUP, text: "Tournaments", link: "/tournaments" },
+  { icon: ICONS.CLUBS, text: "Clubs", link: "/clubs" },
+  { icon: ICONS.STAR, text: "Rating", link: "/rating" },
+  { icon: ICONS.PROFILE, text: "Profile", link: "/profile" },
 ];

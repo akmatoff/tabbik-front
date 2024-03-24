@@ -1,13 +1,11 @@
 import Button from "@/components/Button/Button";
 import { IClub } from "@/interfaces/club";
-import { FaArrowRight } from "react-icons/fa6";
-import { IoMdPerson } from "react-icons/io";
-import { FaStar } from "react-icons/fa";
 import { useUserdata } from "@/queries/userdata";
 import { useRequestToJoinClub } from "@/queries/clubs";
 import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { useNotification } from "@/hooks/useNotification";
+import { ICONS } from "@/components/Icons/Icons";
 
 interface Props {
   club: IClub;
@@ -52,11 +50,11 @@ export default function ClubCard({ club }: Props) {
       <div className="flex w-full items-center justify-between gap-2">
         <div className="flex gap-4">
           <div className="flex gap-1 items-center">
-            <IoMdPerson className="text-md" />
+            {ICONS.PROFILE}
             <h3 className="text-sm font-light">{club.members_count}</h3>
           </div>
           <div className="flex gap-1 items-center">
-            <FaStar className="text-md" />
+            {ICONS.STAR}
             <h3 className="text-sm font-light">{club.rating}</h3>
           </div>
         </div>
@@ -64,7 +62,7 @@ export default function ClubCard({ club }: Props) {
         <div>
           {!userData?.club && !club.is_join_requested && (
             <Button
-              icon={<FaArrowRight />}
+              icon={ICONS.ARROW_RIGHT}
               text="Request to join"
               isLoading={isPending}
               onClick={handleJoinRequest}

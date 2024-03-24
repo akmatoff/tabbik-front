@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import Button from "../Button/Button";
-
-import { LuPlus } from "react-icons/lu";
+import { ICONS } from "../Icons/Icons";
 
 interface Props {
   title: string;
@@ -23,7 +22,7 @@ export default function PageLayout({
         <div>
           {onActionButtonClick && (
             <Button
-              icon={<LuPlus />}
+              icon={ICONS.PLUS}
               size="md"
               text={actionButtonText}
               onClick={onActionButtonClick}
