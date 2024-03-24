@@ -3,12 +3,15 @@ import { IClub } from "@/interfaces/club";
 import { FaArrowRight } from "react-icons/fa6";
 import { IoMdPerson } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
+import { useUserdata } from "@/queries/userdata";
 
 interface Props {
   club: IClub;
 }
 
 export default function ClubCard({ club }: Props) {
+  const { data: userData } = useUserdata();
+
   return (
     <div className="flex flex-col p-6 gap-6 bg-white rounded-primary">
       <div className="flex items-center gap-6">
@@ -27,7 +30,7 @@ export default function ClubCard({ club }: Props) {
         <div className="flex gap-4">
           <div className="flex gap-1 items-center">
             <IoMdPerson className="text-md" />
-            <h3 className="text-sm font-light">0</h3>
+            <h3 className="text-sm font-light">{club.members_count}</h3>
           </div>
           <div className="flex gap-1 items-center">
             <FaStar className="text-md" />
@@ -36,11 +39,13 @@ export default function ClubCard({ club }: Props) {
         </div>
 
         <div>
-          <Button
-            icon={<FaArrowRight />}
-            text="Join the club"
-            onClick={() => {}}
-          />
+          {!userData?.club && (
+            <Button
+              icon={<FaArrowRight />}
+              text="Join the club"
+              onClick={() => {}}
+            />
+          )}
         </div>
       </div>
     </div>

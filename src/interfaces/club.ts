@@ -6,6 +6,7 @@ export interface IClub {
   description: string;
   icon: string;
   rating: number;
+  members_count: number;
   is_approved: boolean;
   club_leader: IUser;
   created: string;
