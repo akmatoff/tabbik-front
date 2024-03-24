@@ -9,8 +9,9 @@ interface Props {
   size?: ButtonSize;
   icon?: JSX.Element;
   type?: ButtonType;
+  isDisabled?: boolean;
   isLoading?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export default function Button({
@@ -18,6 +19,7 @@ export default function Button({
   icon,
   size = "sm",
   type = "primary",
+  isDisabled = false,
   isLoading = false,
   onClick,
 }: Props) {
@@ -39,7 +41,8 @@ export default function Button({
     <button
       className={cn(
         "flex items-center rounded-primary gap-2",
-        CLASSES_BY_TYPE[type]
+        CLASSES_BY_TYPE[type],
+        isDisabled ? "bg-disabled" : ""
       )}
       onClick={onClick}
     >
@@ -56,7 +59,7 @@ export default function Button({
             </span>
           ) : (
             <LoadingSpinner
-              size="m"
+              size="xs"
               {...(type !== "text" && { light: true })}
             />
           )}

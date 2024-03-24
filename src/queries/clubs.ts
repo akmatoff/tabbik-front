@@ -1,6 +1,6 @@
 import { QUERY_KEYS } from "@/constants/queryKeys";
-import { getClubs } from "@/requests/clubs";
-import { useQuery } from "@tanstack/react-query";
+import { getClubs, requestToJoinClub } from "@/requests/clubs";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export function useClubs() {
   const { data, isLoading } = useQuery({
@@ -11,5 +11,24 @@ export function useClubs() {
   return {
     data,
     isLoading,
+  };
+}
+
+interface QueryParams {
+  id: number;
+  onSuccess?: () => void;
+  onError?: () => void;
+}
+
+export function useRequestToJoinClub({ id, onSuccess, onError }: QueryParams) {
+  const { mutate, isPending } = useMutation({
+    mutationFn: () => requestToJoinClub(id),
+    onSuccess,
+    onError,
+  });
+
+  return {
+    mutate,
+    isPending,
   };
 }
