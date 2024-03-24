@@ -86,7 +86,7 @@ export default function ClubCard({ club }: Props) {
   ]);
 
   return (
-    <div className="flex flex-col p-6 gap-6 bg-white rounded-primary">
+    <div className="flex flex-col p-6 gap-6 bg-white rounded-primary hover:scale-105 duration-300">
       <div className="flex items-center gap-6">
         <img
           src={club.icon}

@@ -3,7 +3,8 @@ import Button from "../Button/Button";
 import { ICONS } from "../Icons/Icons";
 
 interface Props {
-  title: string;
+  title?: string;
+  titleElement?: ReactNode;
   children?: ReactNode;
   actionButtonText?: string;
   onActionButtonClick?: () => void;
@@ -11,6 +12,7 @@ interface Props {
 
 export default function PageLayout({
   title,
+  titleElement,
   onActionButtonClick,
   actionButtonText = "Create",
   children,
@@ -18,7 +20,8 @@ export default function PageLayout({
   return (
     <div className="w-full min-h-screen">
       <div className="flex w-full justify-between">
-        <h1 className="font-bold text-3xl mb-8">{title}</h1>
+        {title && <h1 className="font-bold text-3xl mb-8">{title}</h1>}
+        {titleElement}
         <div>
           {onActionButtonClick && (
             <Button
