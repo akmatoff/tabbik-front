@@ -26,3 +26,8 @@ body, html {
 a {
   text-decoration: none;
 }
+
+img {
+  outline: none;
+  user-select: none;
+}

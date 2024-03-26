@@ -57,6 +57,7 @@ export default function ClubCard({ club }: Props) {
           <Button
             icon={ICONS.ARROW_RIGHT}
             text="Request to join"
+            color="secondary"
             isLoading={isRequestPending}
             onClick={handleJoinRequest}
           />
@@ -66,6 +67,7 @@ export default function ClubCard({ club }: Props) {
           return (
             <Button
               icon={ICONS.ARROW_RIGHT}
+              color="secondary"
               text="Join the club"
               onClick={handleJoinClub}
               isLoading={isJoinPending}
@@ -86,32 +88,64 @@ export default function ClubCard({ club }: Props) {
   ]);
 
   return (
-    <div className="flex flex-col p-6 gap-6 bg-white rounded-primary hover:scale-105 duration-300">
-      <div className="flex items-center gap-6">
-        <img
-          src={club.icon}
-          alt="club icon"
-          className="w-24 h-24 rounded-full"
-        />
-        <div>
-          <h1 className="font-bold text-xl">{club.title}</h1>
-          <p className="font-light text-textSecondary">{club.description}</p>
-        </div>
-      </div>
-
-      <div className="flex w-full items-center justify-between gap-2">
-        <div className="flex gap-4">
-          <div className="flex gap-1 items-center">
-            {ICONS.PROFILE}
-            <h3 className="text-sm font-light">{club.members_count}</h3>
+    <div className="relative rounded-primary bg-black hover:bg-secondary duration-500">
+      <div
+        className="rounded-primary absolute z-10 opacity-20"
+        style={{
+          backgroundImage: `url(${club.icon})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "100%",
+          transform: "scale(1)",
+          width: "100%",
+          height: "100%",
+        }}
+      ></div>
+      <div
+        className="rounded-primary absolute z-20 opacity-20"
+        style={{
+          backgroundImage: `url(${club.icon})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "100%",
+          transform: "scale(1)",
+          width: "100%",
+          height: "100%",
+          filter: "blur(3px)",
+        }}
+      ></div>
+      {/* <div className="w-full h-full bg-black absolute rounded-primary z-30 opacity-60"></div> */}
+      <div
+        className={
+          "flex flex-col p-6 gap-6 rounded-primary hover:scale-105 duration-300 relative z-30 text-white"
+        }
+      >
+        <div className="flex items-center gap-6">
+          <img
+            src={club.icon}
+            alt="club icon"
+            className="w-24 h-24 rounded-secondary shadow-lg"
+          />
+          <div>
+            <h1 className="font-bold text-xl">{club.title}</h1>
+            <p className="font-light text-white">{club.description}</p>
           </div>
-          <div className="flex gap-1 items-center">
-            {ICONS.STAR}
-            <h3 className="text-sm font-light">{club.rating}</h3>
-          </div>
         </div>
 
-        <div>{getButtonToDisplay()}</div>
+        <div className="flex w-full items-center justify-between gap-2">
+          <div className="flex gap-4">
+            <div className="flex gap-1 items-center">
+              {ICONS.PROFILE}
+              <h3 className="text-sm font-light">{club.members_count}</h3>
+            </div>
+            <div className="flex gap-1 items-center">
+              {ICONS.STAR}
+              <h3 className="text-sm font-light">{club.rating}</h3>
+            </div>
+          </div>
+
+          <div>{getButtonToDisplay()}</div>
+        </div>
       </div>
     </div>
   );

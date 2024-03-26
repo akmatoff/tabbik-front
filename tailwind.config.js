@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import daysiui from 'daisyui'
+
 export default {
   content: [
     "./index.html",
@@ -22,6 +24,8 @@ export default {
       full: "100%"
     }
   },
-  plugins: [],
+  plugins: [
+    daysiui
+  ],
 }
 
