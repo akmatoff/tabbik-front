@@ -1,9 +1,13 @@
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import ClubCard from "./ClubCard";
 import { useClubs } from "@/queries/clubs";
+import { useNavigate } from "react-router";
+import { ROUTES } from "@/constants/routes";
 
 export default function ClubsList() {
   const { data: clubs, isLoading } = useClubs();
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -15,7 +19,11 @@ export default function ClubsList() {
       {!isLoading && (
         <div className="grid md:grid-cols-2 gap-4">
           {clubs?.map((club) => (
-            <ClubCard key={club.id} club={club} />
+            <ClubCard
+              key={club.id}
+              club={club}
+              onClick={() => navigate(`${ROUTES.CLUBS}/${club.id}`)}
+            />
           ))}
         </div>
       )}

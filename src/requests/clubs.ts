@@ -11,7 +11,7 @@ export async function getClubs(): Promise<IClub[]> {
 }
 
 export async function getClubDetails(id: number): Promise<IClub> {
-  return axios.get(`${API_CLUBS}/${id}`).then(({ data }) => data);
+  return axios.get(`${API_CLUBS}${id}`).then(({ data }) => data);
 }
 
 export async function requestToJoinClub(id: number) {

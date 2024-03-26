@@ -3,6 +3,5 @@ export const ROUTES = {
   LOGIN: "/login",
   CLUBS: "/clubs",
   CLUBS_LIST: "/clubs/list",
-  MY_CLUB: "/clubs/my-club",
   PROFILE: "/profile",
 };

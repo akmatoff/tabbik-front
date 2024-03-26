@@ -10,9 +10,10 @@ import { useCallback } from "react";
 
 interface Props {
   club: IClub;
+  onClick?: () => void;
 }
 
-export default function ClubCard({ club }: Props) {
+export default function ClubCard({ club, onClick }: Props) {
   const queryClient = useQueryClient();
 
   const { data: userData } = useUserdata();
@@ -88,7 +89,10 @@ export default function ClubCard({ club }: Props) {
   ]);
 
   return (
-    <div className="relative rounded-primary bg-black hover:bg-secondary duration-500">
+    <div
+      className="relative rounded-primary bg-black hover:bg-secondary duration-500"
+      onClick={onClick}
+    >
       <div
         className="rounded-primary absolute z-10 opacity-20"
         style={{

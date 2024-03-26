@@ -10,7 +10,7 @@ import Login from "@/pages/Login/Login";
 import Clubs from "@/pages/Clubs/Clubs";
 import Profile from "@/pages/Profile/Profile";
 import ClubsList from "@/pages/Clubs/components/ClubsList";
-import MyClub from "@/pages/Clubs/components/MyClub";
+import ClubDetails from "@/pages/Clubs/ClubDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,7 +19,7 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="/clubs" element={<Clubs />}>
           <Route index path="list" element={<ClubsList />} />
-          <Route path="my-club" element={<MyClub />} />
+          <Route path=":id" element={<ClubDetails />} />
         </Route>
         <Route path="/profile" element={<Profile />} />
       </Route>
