@@ -51,7 +51,7 @@ export default function ClubDetails() {
           },
         },
       ]}
-      withOptionsButton
+      withOptionsButton={userData?.user.id === club?.club_leader.id}
     >
       <div className="w-full">
         {isLoading && (
