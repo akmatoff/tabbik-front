@@ -46,7 +46,10 @@ export default function Button({
         CLASSES_BY_TYPE[type],
         isDisabled ? "bg-disabled" : `bg-${color}`
       )}
-      onClick={onClick}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick?.();
+      }}
     >
       {icon && (
         <>

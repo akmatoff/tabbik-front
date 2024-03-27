@@ -24,7 +24,9 @@ export default function ClubCard({ club, onClick }: Props) {
     useRequestToJoinClub({
       id: club.id,
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CLUBS] });
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.CLUBS, QUERY_KEYS.USERDATA],
+        });
         showSuccessNotification("Join requested!");
       },
       onError: () => {
@@ -35,7 +37,9 @@ export default function ClubCard({ club, onClick }: Props) {
   const { mutate: joinClub, isPending: isJoinPending } = useJoinClub({
     id: club.id,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CLUBS] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.CLUBS, QUERY_KEYS.USERDATA],
+      });
       showSuccessNotification("Joined successfully!");
     },
     onError: () => {
