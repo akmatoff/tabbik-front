@@ -14,6 +14,7 @@ import { ROUTES } from "@/constants/routes";
 import { useUserdata } from "@/queries/userdata";
 import ClubInfo from "./components/ClubInfo";
 import { useEffect } from "react";
+import ClubJoinRequests from "./components/ClubJoinRequests";
 
 export default function ClubDetails() {
   const { id } = useParams();
@@ -64,7 +65,7 @@ export default function ClubDetails() {
 
             <Routes>
               <Route index path="details" element={<ClubInfo club={club} />} />
-              <Route path="join-requests" element={<div>TEST</div>} />
+              <Route path="join-requests" element={<ClubJoinRequests />} />
             </Routes>
           </>
         )}

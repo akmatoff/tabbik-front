@@ -1,9 +1,10 @@
 import {
+  API_CLUB_JOIN_REQUESTS,
   API_CLUBS,
   API_CLUBS_JOIN,
   API_CLUBS_REQUEST_TO_JOIN,
 } from "@/constants/apiConstants";
-import { IClub } from "@/interfaces/club";
+import { IClub, IClubJoinRequest } from "@/interfaces/club";
 import axios from "axios";
 
 export async function getClubs(): Promise<IClub[]> {
@@ -20,4 +21,10 @@ export async function requestToJoinClub(id: number) {
 
 export async function joinClub(id: number) {
   return axios.post(API_CLUBS_JOIN(id)).then(({ data }) => data);
+}
+
+export async function getClubJoinRequests(
+  id: number
+): Promise<IClubJoinRequest[]> {
+  return axios.get(API_CLUB_JOIN_REQUESTS(id)).then(({ data }) => data);
 }

@@ -14,3 +14,10 @@ export interface IClub {
   created: string;
   updated: string;
 }
+
+export interface IClubJoinRequest {
+  id: number;
+  club: IClub;
+  user: IUser;
+  is_approved: boolean;
+}

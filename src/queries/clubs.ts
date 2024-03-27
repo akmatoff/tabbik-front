@@ -1,6 +1,7 @@
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import {
   getClubDetails,
+  getClubJoinRequests,
   getClubs,
   joinClub,
   requestToJoinClub,
@@ -27,6 +28,18 @@ export function useClubDetails({ id }: QueryParams) {
   const { data, isLoading } = useQuery({
     queryFn: () => getClubDetails(id),
     queryKey: [QUERY_KEYS.CLUBS, id],
+  });
+
+  return {
+    data,
+    isLoading,
+  };
+}
+
+export function useClubJoinRequests({ id }: QueryParams) {
+  const { data, isLoading } = useQuery({
+    queryFn: () => getClubJoinRequests(id),
+    queryKey: [QUERY_KEYS.CLUBS, id, QUERY_KEYS.CLUB_JOIN_REQUESTS],
   });
 
   return {
