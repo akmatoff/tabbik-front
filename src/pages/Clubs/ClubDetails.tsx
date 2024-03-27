@@ -1,44 +1,74 @@
-import dayjs from "dayjs";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import { useClubDetails } from "@/queries/clubs";
-import { useParams } from "react-router";
+import {
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router";
 import ClubBanner from "./components/ClubBanner";
-import { DATE_TIME_FORMAT } from "@/constants/common";
+import PageLayout from "@/components/Layouts/PageLayout";
+import { Tab, Tabs } from "@/components/Tabs/Tabs";
+import { ROUTES } from "@/constants/routes";
+import { useUserdata } from "@/queries/userdata";
+import ClubInfo from "./components/ClubInfo";
+import { useEffect } from "react";
 
 export default function ClubDetails() {
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
+  const { pathname } = useLocation();
+
+  const { data: userData } = useUserdata();
+
   const { data: club, isLoading } = useClubDetails({ id: +id! });
 
-  return (
-    <div className="w-full">
-      {isLoading && (
-        <div className="w-full min-h-60 grid place-content-center">
-          <LoadingSpinner size="l" />
-        </div>
-      )}
-      {club && !isLoading && (
-        <>
-          <ClubBanner club={club} />
+  useEffect(() => {
+    club && pathname === "/clubs" && navigate(ROUTES.CLUB_DETAILS(club.id));
+  }, [club, navigate, pathname]);
 
-          <div className="flex flex-col gap-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 mt-6 gap-4">
-              <div className="bg-white p-6 rounded-secondary">
-                <h1 className="font-bold text-lg">Leader</h1>
-                {club.club_leader.username}
-              </div>
-              <div className="bg-white p-6 rounded-secondary">
-                <h1 className="font-bold text-lg">Created</h1>
-                {dayjs(club.created).format(DATE_TIME_FORMAT)}
-              </div>
-            </div>
-            <div className="bg-white p-6 rounded-secondary">
-              <h1 className="font-bold text-lg">Description</h1>
-              {club.description}
-            </div>
+  return (
+    <PageLayout
+      titleElement={
+        <Tabs>
+          <Tab to={ROUTES.CLUBS} label="Clubs" />
+          {userData?.club && (
+            <Tab to={ROUTES.CLUB_DETAILS(userData?.club.id)} label="My club" />
+          )}
+        </Tabs>
+      }
+      options={[
+        {
+          text: "Join requests",
+          onClick: () => {
+            if (club) {
+              navigate(ROUTES.CLUB_JOIN_REQUESTS(club.id));
+            }
+          },
+        },
+      ]}
+      withOptionsButton
+    >
+      <div className="w-full">
+        {isLoading && (
+          <div className="w-full min-h-60 grid place-content-center">
+            <LoadingSpinner size="l" />
           </div>
-        </>
-      )}
-    </div>
+        )}
+        {club && !isLoading && (
+          <>
+            <ClubBanner club={club} />
+
+            <Routes>
+              <Route index path="details" element={<ClubInfo club={club} />} />
+              <Route path="join-requests" element={<div>TEST</div>} />
+            </Routes>
+          </>
+        )}
+      </div>
+    </PageLayout>
   );
 }

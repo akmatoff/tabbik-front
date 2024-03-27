@@ -4,6 +4,7 @@ import { MdEmojiEvents } from "react-icons/md";
 import { IoMdPerson } from "react-icons/io";
 import { FaArrowRight, FaArrowLeft, FaCheck } from "react-icons/fa6";
 import { LuPlus } from "react-icons/lu";
+import { BsThreeDots } from "react-icons/bs";
 
 export const ICONS = {
   CLUBS: <IoPeopleSharp />,
@@ -14,4 +15,5 @@ export const ICONS = {
   ARROW_LEFT: <FaArrowLeft />,
   PLUS: <LuPlus />,
   CHECK: <FaCheck />,
+  THREE_DOTS: <BsThreeDots />,
 };

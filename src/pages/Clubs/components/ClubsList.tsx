@@ -22,7 +22,7 @@ export default function ClubsList() {
             <ClubCard
               key={club.id}
               club={club}
-              onClick={() => navigate(`${ROUTES.CLUBS}/${club.id}`)}
+              onClick={() => navigate(ROUTES.CLUB_DETAILS(club.id))}
             />
           ))}
         </div>

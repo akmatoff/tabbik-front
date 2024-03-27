@@ -31,7 +31,7 @@ export function Tab({ label, to }: TabProps) {
       to={to}
       className={cn(
         "px-4 py-1 text-lg cursor-pointer rounded-primary duration-300",
-        pathname.includes(to) ? "bg-secondary text-textLight font-bold" : ""
+        pathname.endsWith(to) ? "bg-secondary text-textLight font-bold" : ""
       )}
     >
       {label}
