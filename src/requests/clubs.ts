@@ -1,4 +1,5 @@
 import {
+  API_APPROVE_CLUB_JOIN_REQUESTS,
   API_CLUB_JOIN_REQUESTS,
   API_CLUBS,
   API_CLUBS_JOIN,
@@ -27,4 +28,10 @@ export async function getClubJoinRequests(
   id: number
 ): Promise<IClubJoinRequest[]> {
   return axios.get(API_CLUB_JOIN_REQUESTS(id)).then(({ data }) => data);
+}
+
+export async function approveClubJoinRequest(id: number) {
+  return axios
+    .post(API_APPROVE_CLUB_JOIN_REQUESTS(id))
+    .then(({ data }) => data);
 }

@@ -1,5 +1,6 @@
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import {
+  approveClubJoinRequest,
   getClubDetails,
   getClubJoinRequests,
   getClubs,
@@ -76,6 +77,25 @@ export function useJoinClub({ id, onSuccess, onError }: MutationParams) {
     mutationFn: () => joinClub(id),
     onSuccess,
     onError,
+  });
+
+  return {
+    mutate,
+    isPending,
+  };
+}
+
+export function useApproveJoinRequest({
+  onSuccess,
+  onError,
+}: {
+  onSuccess: () => void;
+  onError: (error: string) => void;
+}) {
+  const { mutate, isPending } = useMutation({
+    mutationFn: (id: number) => approveClubJoinRequest(id),
+    onSuccess,
+    onError: (error) => onError(error.message),
   });
 
   return {
