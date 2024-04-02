@@ -13,8 +13,9 @@ import { Tab, Tabs } from "@/components/Tabs/Tabs";
 import { ROUTES } from "@/constants/routes";
 import { useUserdata } from "@/queries/userdata";
 import ClubInfo from "./components/ClubInfo";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import ClubJoinRequests from "./components/ClubJoinRequests";
+import { TextTab, TextTabs } from "@/components/Tabs/TextTabs";
 
 export default function ClubDetails() {
   const { id } = useParams();
@@ -26,6 +27,11 @@ export default function ClubDetails() {
   const { data: userData } = useUserdata();
 
   const { data: club, isLoading } = useClubDetails({ id: +id! });
+
+  const isLeader = useMemo(
+    () => userData?.user.id === club?.club_leader.id,
+    [userData, club]
+  );
 
   useEffect(() => {
     club && pathname === "/clubs" && navigate(ROUTES.CLUB_DETAILS(club.id));
@@ -41,17 +47,6 @@ export default function ClubDetails() {
           )}
         </Tabs>
       }
-      options={[
-        {
-          text: "Join requests",
-          onClick: () => {
-            if (club) {
-              navigate(ROUTES.CLUB_JOIN_REQUESTS(club.id));
-            }
-          },
-        },
-      ]}
-      withOptionsButton={userData?.user.id === club?.club_leader.id}
     >
       <div className="w-full">
         {isLoading && (
@@ -62,6 +57,16 @@ export default function ClubDetails() {
         {club && !isLoading && (
           <>
             <ClubBanner club={club} />
+
+            <TextTabs>
+              <TextTab to={ROUTES.CLUB_DETAILS(club.id)} label="Details" />
+              {isLeader && (
+                <TextTab
+                  to={ROUTES.CLUB_JOIN_REQUESTS(club.id)}
+                  label="Join requests"
+                />
+              )}
+            </TextTabs>
 
             <Routes>
               <Route index path="details" element={<ClubInfo club={club} />} />
