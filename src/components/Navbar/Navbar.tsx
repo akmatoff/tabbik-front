@@ -44,6 +44,7 @@ export default function Navbar() {
           }
           options={[
             { text: "Profile", onClick: () => navigate(ROUTES.PROFILE) },
+            { text: "Logout", onClick: () => {} },
           ]}
         />
       </div>

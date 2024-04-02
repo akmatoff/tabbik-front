@@ -31,9 +31,11 @@ export default function Dropdown({ options, trigger }: Props) {
       </div>
       {show && (
         <div className="relative">
-          <div className="-left-20 top-6 absolute py-2 px-5 bg-white rounded-secondary cursor-pointer shadow-lg">
+          <div className="-left-20 top-6 absolute bg-white rounded-secondary cursor-pointer shadow-lg py-2 px-3">
             {options.map((option) => (
-              <div onClick={() => handleOptionClick(option)}>{option.text}</div>
+              <div className="p-1" onClick={() => handleOptionClick(option)}>
+                {option.text}
+              </div>
             ))}
           </div>
         </div>
