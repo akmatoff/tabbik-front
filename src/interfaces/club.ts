@@ -22,7 +22,9 @@ export interface IClubJoinRequest {
   is_approved: boolean;
 }
 
-export interface IClubMember extends IUser {}
+export interface IClubMember extends IUser {
+  club_id: number;
+}
 
 export interface IClubMembers {
   count: number;
