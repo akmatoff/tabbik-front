@@ -12,8 +12,11 @@ export default function ClubMembers({ club }: Props) {
     <div className="flex flex-col w-full mt-4 gap-4">
       {!isLoading &&
         members?.map((member) => (
-          <div className="bg-white rounded-secondary p-6">
-            {member.username}
+          <div className="flex bg-white rounded-secondary p-6 items-center gap-4">
+            {member.avatar && (
+              <img src={member.avatar} className="w-12 h-12 rounded-full" />
+            )}
+            <h1>{member.username}</h1>
           </div>
         ))}
     </div>

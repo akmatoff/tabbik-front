@@ -26,11 +26,16 @@ export default function ClubJoinRequestCard({ request }: Props) {
 
   return (
     <div className="flex justify-between p-6 bg-white rounded-secondary">
-      <div>
-        <h1 className="font-bold">
-          {request.user.first_name} {request.user.last_name}
-        </h1>
-        <h2 className="text-textSecondary">{request.user.username}</h2>
+      <div className="flex gap-4">
+        {request.user.avatar && (
+          <img src={request.user.avatar} className="w-12 h-12" />
+        )}
+        <div>
+          <h1 className="font-bold">
+            {request.user.first_name} {request.user.last_name}
+          </h1>
+          <h2 className="text-textSecondary">{request.user.username}</h2>
+        </div>
       </div>
 
       {!request.is_approved ? (
