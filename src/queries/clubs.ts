@@ -3,6 +3,7 @@ import {
   approveClubJoinRequest,
   getClubDetails,
   getClubJoinRequests,
+  getClubMembers,
   getClubs,
   joinClub,
   requestToJoinClub,
@@ -33,6 +34,18 @@ export function useClubDetails({ id }: QueryParams) {
 
   return {
     data,
+    isLoading,
+  };
+}
+
+export function useClubMembers({ id }: QueryParams) {
+  const { data, isLoading } = useQuery({
+    queryFn: () => getClubMembers(id),
+    queryKey: [QUERY_KEYS.CLUB_MEMBERS, id],
+  });
+
+  return {
+    data: data?.data,
     isLoading,
   };
 }

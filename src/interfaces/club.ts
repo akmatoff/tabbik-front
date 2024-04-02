@@ -21,3 +21,10 @@ export interface IClubJoinRequest {
   user: IUser;
   is_approved: boolean;
 }
+
+export interface IClubMember extends IUser {}
+
+export interface IClubMembers {
+  count: number;
+  data: IClubMember[];
+}

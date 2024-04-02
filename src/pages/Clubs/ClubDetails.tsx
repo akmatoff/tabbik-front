@@ -16,6 +16,7 @@ import ClubInfo from "./components/ClubInfo";
 import { useEffect, useMemo } from "react";
 import ClubJoinRequests from "./components/ClubJoinRequests";
 import { TextTab, TextTabs } from "@/components/Tabs/TextTabs";
+import ClubMembers from "./ClubMembers";
 
 export default function ClubDetails() {
   const { id } = useParams();
@@ -60,6 +61,7 @@ export default function ClubDetails() {
 
             <TextTabs>
               <TextTab to={ROUTES.CLUB_DETAILS(club.id)} label="Details" />
+              <TextTab to={ROUTES.CLUB_MEMBERS(club.id)} label="Members" />
               {isLeader && (
                 <TextTab
                   to={ROUTES.CLUB_JOIN_REQUESTS(club.id)}
@@ -71,6 +73,7 @@ export default function ClubDetails() {
             <Routes>
               <Route index path="details" element={<ClubInfo club={club} />} />
               <Route path="join-requests" element={<ClubJoinRequests />} />
+              <Route path="members" element={<ClubMembers club={club} />} />
             </Routes>
           </>
         )}
