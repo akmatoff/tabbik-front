@@ -10,6 +10,7 @@ import Login from "@/pages/Login/Login";
 import Clubs from "@/pages/Clubs/Clubs";
 import Profile from "@/pages/Profile/Profile";
 import ClubDetails from "@/pages/Clubs/ClubDetails";
+import Tournaments from "@/pages/Tournaments/Tournaments";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,9 @@ const router = createBrowserRouter(
         <Route path="clubs">
           <Route index element={<Clubs />} />
           <Route path=":id/*" element={<ClubDetails />} />
+        </Route>
+        <Route path="tournaments">
+          <Route index element={<Tournaments />} />
         </Route>
 
         <Route path="profile" element={<Profile />} />

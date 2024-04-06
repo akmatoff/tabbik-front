@@ -13,3 +13,4 @@ export const API_CLUBS_REQUEST_TO_JOIN = (id: number) =>
   API_CLUBS.concat(`${id}/request_to_join/`);
 export const API_CLUBS_JOIN = (id: number) =>
   API_CLUBS.concat(`${id}/join_club`);
+export const API_TOURNAMENTS = API_URL.concat("/tournaments");

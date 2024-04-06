@@ -35,17 +35,20 @@ export default function Button({
   return (
     <button
       className={cn(
-        `btn btn-${size} border-none rounded-primary w-auto h-auto px-8 py-3`,
+        `flex items-center gap-2 border-none rounded-primary w-auto h-auto px-6 py-4 min-w-40`,
         isDisabled ? "bg-disabled" : `bg-${color} `
       )}
+      disabled={isDisabled}
       onClick={(e) => {
+        if (isDisabled) return;
+
         e.stopPropagation();
         onClick?.();
       }}
     >
-      {icon && (
+      {!isLoading ? (
         <>
-          {!isLoading ? (
+          {icon && (
             <span
               className={cn(
                 TEXT_COLOR_BY_TYPE[type],
@@ -54,17 +57,20 @@ export default function Button({
             >
               {icon}
             </span>
-          ) : (
-            <LoadingSpinner
-              size="xs"
-              {...(type !== "text" && { light: true })}
-            />
           )}
+          <h1
+            className={cn(
+              "font-bold",
+              TEXT_COLOR_BY_TYPE[type],
+              `text-${size}`
+            )}
+          >
+            {text}
+          </h1>
         </>
+      ) : (
+        <LoadingSpinner size="xs" {...(type !== "text" && { light: true })} />
       )}
-      <h1 className={cn("font-bold", TEXT_COLOR_BY_TYPE[type], `text-${size}`)}>
-        {text}
-      </h1>
     </button>
   );
 }
