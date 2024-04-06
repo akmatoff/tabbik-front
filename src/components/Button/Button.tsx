@@ -25,13 +25,6 @@ export default function Button({
   isLoading = false,
   onClick,
 }: Props) {
-  const CLASSES_BY_TYPE = {
-    primary: `px-5 py-2 max-h-12 shadow-md`,
-    outline: `bg-transparent border px-5 py-2 max-h-12 border-accent`,
-    text: "bg-transparent text-text px-5 py-2 max-h-12",
-    big: `px-12 py-4 max-h-20 shadow-lg`,
-  };
-
   const TEXT_COLOR_BY_TYPE = {
     primary: "text-textLight",
     outline: "text-accent",
@@ -42,9 +35,8 @@ export default function Button({
   return (
     <button
       className={cn(
-        "flex items-center rounded-primary gap-2",
-        CLASSES_BY_TYPE[type],
-        isDisabled ? "bg-disabled" : `bg-${color}`
+        `btn btn-${size} border-none rounded-primary w-auto h-auto px-8 py-3`,
+        isDisabled ? "bg-disabled" : `bg-${color} `
       )}
       onClick={(e) => {
         e.stopPropagation();

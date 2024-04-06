@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import daysiui from 'daisyui'
+import daysyui from 'daisyui'
 
 export default {
   content: [
@@ -25,7 +25,7 @@ export default {
     }
   },
   plugins: [
-    daysiui
+    daysyui
   ],
 }
 

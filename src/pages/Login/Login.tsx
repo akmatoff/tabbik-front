@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 import { ROUTES } from "@/constants/routes";
 import { useNotification } from "@/hooks/useNotification";
 import Button from "@/components/Button/Button";
+import { useUserdata } from "@/queries/userdata";
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,6 +17,8 @@ export default function Login() {
   const navigate = useNavigate();
 
   const { showErrorNotification, showSuccessNotification } = useNotification();
+
+  const { refetch } = useUserdata();
 
   const login = useGoogleLogin({
     onSuccess: ({ access_token }) => {
@@ -32,6 +35,7 @@ export default function Login() {
         })
         .finally(() => {
           setIsLoading(false);
+          refetch();
         });
     },
   });
@@ -49,7 +53,7 @@ export default function Login() {
         </div>
         <Button
           icon={<FaGoogle />}
-          text="Sign in with Google"
+          text="Continue with Google"
           isLoading={isLoading}
           type="big"
           size="xl"

@@ -3,7 +3,7 @@ import { getUserdata } from "@/requests/userdata";
 import { useQuery } from "@tanstack/react-query";
 
 export function useUserdata() {
-  const { data, isLoading } = useQuery({
+  const { data, refetch, isLoading } = useQuery({
     queryFn: getUserdata,
     queryKey: [QUERY_KEYS.USERDATA],
     staleTime: 60 * 1000 * 60,
@@ -12,5 +12,6 @@ export function useUserdata() {
   return {
     data,
     isLoading,
+    refetch,
   };
 }
